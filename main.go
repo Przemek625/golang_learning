@@ -3,6 +3,7 @@ package main
 import (
 	"sort"
 	"fmt"
+	"strconv"
 )
 
 type Player struct {
@@ -58,5 +59,22 @@ func main() {
 	player2.addPoints(100)
 	fmt.Println(player2.points)
 	fmt.Println(getWinner(*player1, *player2))
+
+	var text string = "1231231"
+	//converting string to int
+	w, err := strconv.Atoi(text)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(w)
+	//trying to convert not number to int
+	d, err := strconv.Atoi("not_number")
+
+	if err != nil{
+		fmt.Println(err)
+	} else {
+		fmt.Println(d)
+	}
 
 }

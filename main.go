@@ -6,7 +6,17 @@ import (
 	"strconv"
 	"math/cmplx"
 	"math"
+// Packages for playing with the database
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"strings"
 )
+
+type Book struct {
+	Id int `gorm:"PRIMARY_KEY; AUTO_INCREMENT"`
+	Name string `gorm:"NOT NULL"`
+	Author string `gorm:"NOT NULL"`
+}
 
 type Vertex struct {
 	X int
@@ -182,6 +192,42 @@ func main() {
 		{13, true},
 	}
 	fmt.Println(qq)
+
+	joinedStrings := strings.Join([]string{"1", "2", "3", "4"}, "_")
+	fmt.Println(joinedStrings)
+
+	//converting int to string
+	integer := strconv.Itoa(1234)
+	fmt.Println(integer)
+	//converting string to int
+	numberFromString, err := strconv.Atoi("1234")
+	fmt.Println(numberFromString)
+
+	//Playing with the database
+	db, err := gorm.Open("mysql", "falcon:falcon@/falcon")
+	if err != nil {
+		panic("failed to connect database")
+	}
+	defer db.Close()
+
+	for i := 0; i < 10;  i++{
+		iToString := strconv.Itoa(i)
+		book := Book{
+			Name: strings.Join([]string{"Book", iToString}, "_"),
+			Author: strings.Join([]string{"Author", iToString}, "_"),
+			}
+		db.Create(&book)
+	}
+
+	var book []Book
+
+	db.Find(&book)
+
+	for key, value := range book {
+		fmt.Println(key, value)
+	}
+
+
 
 
 

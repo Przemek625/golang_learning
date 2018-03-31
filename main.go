@@ -143,9 +143,46 @@ func main() {
 
 	vertex := Vertex{1, 1}
 	vertex.X = 100
+	//has type *Vertex
 	pointer_vertex := &vertex
 	// This means the same (*pointer_vertex). However language allows below notation.
 	pointer_vertex.X = 1000
 	fmt.Println(vertex)
+
+	//[n]T is an array of n values of type T
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Println(primes)
+	//[]T is a slice with elements of type T
+	//creates a slice which includes elements 0 through 3 of primes
+	//Slices are like references to arrays. They dose not store any data
+	//It just describes a section of an underlying array.
+	var s []int = primes[0:4]
+	fmt.Println(s)
+	s[0] = 10000000
+	//If we change value via slice, We change a value of primes.
+	//Proof: prints [10000000 3 5 7 11 13]
+	fmt.Println(primes)
+	//Slice literal
+	//A slice literal is like an array literal without the length.
+	//Array literal [3]bool{true, true, false}
+	//And this creates the same array as above, then builds a slice that references it:
+	//[]bool{true, true, false}
+	q := []int{2, 3, 5, 7, 11, 13}
+	fmt.Println(q)
+
+	qq := []struct {
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{5, true},
+		{7, true},
+		{11, false},
+		{13, true},
+	}
+	fmt.Println(qq)
+
+
 
 }

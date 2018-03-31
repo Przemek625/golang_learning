@@ -4,7 +4,14 @@ import (
 	"sort"
 	"fmt"
 	"strconv"
+	"math/cmplx"
+	"math"
 )
+
+type Vertex struct {
+	X int
+	Y int
+}
 
 type Player struct {
 	nickname string
@@ -76,5 +83,69 @@ func main() {
 	} else {
 		fmt.Println(d)
 	}
+
+	//variable declaration with initializers
+	var i, j int = 1, 2
+
+	var (
+		ToBe   bool       = false
+		MaxInt uint64     = 1<<64 - 1
+		z      complex128 = cmplx.Sqrt(-5 + 12i)
+	)
+
+	fmt.Println(ToBe, MaxInt, z)
+
+	fmt.Println(i, j)
+	//short variable declaration
+	k := 100
+
+	fmt.Println(k)
+
+	const someConstant = 1234
+	fmt.Println(someConstant)
+
+	//for loop
+	sum := 0
+	for i := 0; i < 10; i++ {
+		sum += i
+	}
+	fmt.Println(sum)
+
+	var x, n, lim float64 = 3, 2, 10
+
+	//Variables declared by the statement are only in scope until the end of the if
+	if v := math.Pow(x, n); v < lim {
+		fmt.Println(v)
+	} else {
+		fmt.Println("v > lim")
+	}
+
+	for i := 0; i < 100; i++{
+		if i % 5 == 0 && i % 3 == 0{
+			fmt.Println("FizzBuzz")
+		} else if i % 3 == 0 {
+			fmt.Println("Fizz")
+		} else if i % 5 == 0 {
+			fmt.Println("Buzz")
+		} else {
+			fmt.Println(i)
+		}
+	}
+
+	//Pointers
+	l := 0
+	fmt.Println(l)
+	//pointer_l points to l
+	pointer_l := &l
+	//change the value of l through pointer_l
+	*pointer_l = 2
+	fmt.Println(l)
+
+	vertex := Vertex{1, 1}
+	vertex.X = 100
+	pointer_vertex := &vertex
+	// This means the same (*pointer_vertex). However language allows below notation.
+	pointer_vertex.X = 1000
+	fmt.Println(vertex)
 
 }

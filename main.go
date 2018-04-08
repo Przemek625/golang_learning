@@ -24,6 +24,33 @@ type Vertex struct {
 	Y int
 }
 
+func (v Vertex ) say_cords()  {
+	fmt.Println(v.X, v.Y)
+
+}
+
+//We use composition in here
+type MoreAdvancedVertex struct{
+	Vertex
+	Z int
+
+}
+
+func (v MoreAdvancedVertex ) say_cords() {
+	fmt.Println(v.X, v.Y, v.Z)
+
+}
+
+//Interfaces allow polymorphism
+type Cords interface {
+	say_cords()
+}
+
+func say_cords(c Cords)  {
+	c.say_cords()
+
+}
+
 type Player struct {
 	//This variable won't be visible outside the package
 	nickname string
@@ -257,5 +284,16 @@ func main() {
 	} else {
 		fmt.Println("there is no such key")
 	}
+
+	vex := Vertex{1, 2}
+	mav := MoreAdvancedVertex{Vertex{1, 2}, 3}
+	mav.say_cords()
+
+	//If say_cords was taking a pointer of MoreAdvancedVertex
+	//There would be an error...
+
+	//There we use polymorphism
+	say_cords(vex)
+	say_cords(mav)
 
 }

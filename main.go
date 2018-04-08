@@ -227,7 +227,12 @@ func main() {
 		fmt.Println(key, value)
 	}
 
+	var potop Book
 
+	//// SELECT * FROM books WHERE name = "Potop";
+	db.Find(&potop, "name = ?", "Potop")
+
+	fmt.Println(potop)
 
 
 

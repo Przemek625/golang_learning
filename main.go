@@ -19,11 +19,13 @@ type Book struct {
 }
 
 type Vertex struct {
+	//This variable will be visible outside the package
 	X int
 	Y int
 }
 
 type Player struct {
+	//This variable won't be visible outside the package
 	nickname string
 	points   int
 }
@@ -228,12 +230,32 @@ func main() {
 	}
 
 	var potop Book
+	var potop2 Book
 
 	//// SELECT * FROM books WHERE name = "Potop";
 	db.Find(&potop, "name = ?", "Potop")
+	db.Where("name = ?", "Potop").Find(&potop2)
 
 	fmt.Println(potop)
+	fmt.Println(potop2)
 
+	map_people_age := map[string]int{
+		"Bob": 24,
+		"Susan": 16,
+		"Denis": 60,
+	}
 
+	for key, value := range map_people_age {
+		fmt.Println(key, value)
+	}
+
+	fmt.Println(map_people_age["Bob"])
+	fmt.Println(map_people_age["NO_KEY"])
+
+	if val, ok := map_people_age["NO_KEY"]; ok {
+		fmt.Println("NO_KEY is in the map with value: ", val)
+	} else {
+		fmt.Println("there is no such key")
+	}
 
 }

@@ -296,4 +296,24 @@ func main() {
 	say_cords(vex)
 	say_cords(mav)
 
+	//Coping unique values
+	var set []int
+	array := []int{1, 1, 1, 2, 2, 3}
+
+	for _, v := range array{
+		in := false
+		for _, v2 := range set{
+			if v == v2{
+				in = true
+			}
+		}
+
+		if in == false{
+			set = append(set, v)
+		}
+	}
+	fmt.Println(array)
+	fmt.Println(set)
+
+
 }

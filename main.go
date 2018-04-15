@@ -10,6 +10,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"strings"
+	"reflect"
 )
 
 type Book struct {
@@ -353,6 +354,28 @@ func main() {
 	fmt.Println(xs)
 
 
+	point := Vertex{1, 1}
+	//Operand & generates a pointer to Vertex
+	point2 := &point
 
+	//https://tour.golang.org/moretypes/1
+
+	//main.Vertex
+	fmt.Println(reflect.TypeOf(point))
+	//*main.Vertex
+	fmt.Println(reflect.TypeOf(point2))
+	//main.Vertex
+	//The * operator denotes the pointer's underlying value.
+	fmt.Println(reflect.TypeOf(*point2))
+
+	//This is invalid
+	//fmt.Println(reflect.TypeOf(*point))
+
+	var pp *int
+	ii := 42
+	pp = &ii
+
+	fmt.Println(*pp) // read i through the pointer p
+	*pp = 21         // set i through the pointer p
 
 }

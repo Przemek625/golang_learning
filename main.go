@@ -315,5 +315,44 @@ func main() {
 	fmt.Println(array)
 	fmt.Println(set)
 
+	//A slice has both a length and a capacity.
+	//The length of a slice is the number of elements it contains.
+	//The capacity of a slice is the number of elements in the underlying array,
+	// counting from the first element in the slice.
+	//The length and capacity of a slice s can be obtained using the expressions
+	// len(s) and cap(s).
+	//You can extend a slice's length by re-slicing it, provided it has sufficient
+	// capacity. Try changing one of the slice operations in the example program
+	//to extend it beyond its capacity and see what happens.
+
+	//For example, make([]int, 0, 10) allocates an underlying array
+	//of size 10 and returns a slice of length 0 and capacity 10 that is
+	//backed by this underlying array
+	xs := make([]int, 0, 10)
+	//length of xs is 0
+	fmt.Println(len(xs))
+	//capacity of xs is 10
+	fmt.Println(cap(xs))
+
+	//it will panic
+	//xs[3] = 10
+	//fmt.Println(xs[0])
+
+	//https://tour.golang.org/moretypes/11
+	//Extending slice length
+	xs = xs[:10]
+	//now the length is 10
+	fmt.Println(len(xs))
+	//prints [0 0 0 0 0 0 0 0 0 0]
+	fmt.Println(xs)
+	//panic: runtime error: slice bounds out of range
+	//xs = xs[:20]
+
+	// Drop its first two values.
+	xs = xs[2:]
+	fmt.Println(xs)
+
+
+
 
 }

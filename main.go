@@ -369,7 +369,14 @@ func main() {
 	fmt.Println(reflect.TypeOf(*point2))
 
 	//This is invalid
-	//fmt.Println(reflect.TypeOf(*point))
+	//fmt.Println(reflect.TypeOf(*
+
+	//Reading the value through pointer
+	fmt.Println((*point2).X)
+	//To access the field X of a struct when we have the struct pointer p we could
+	//write (*p).X. However, that notation is cumbersome,
+	//so the language permits us instead to write just p.X, without the explicit dereference.
+	fmt.Println(point2.X)
 
 	var pp *int
 	ii := 42

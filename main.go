@@ -10,6 +10,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"strings"
+	"reflect"
 )
 
 type Book struct {
@@ -296,6 +297,94 @@ func main() {
 	say_cords(vex)
 	say_cords(mav)
 
+	//Coping unique values
+	var set []int
+	array := []int{1, 1, 1, 2, 2, 3}
+
+	for _, v := range array{
+		in := false
+		for _, v2 := range set{
+			if v == v2{
+				in = true
+			}
+		}
+
+		if in == false{
+			set = append(set, v)
+		}
+	}
+	fmt.Println(array)
+	fmt.Println(set)
+
+	//A slice has both a length and a capacity.
+	//The length of a slice is the number of elements it contains.
+	//The capacity of a slice is the number of elements in the underlying array,
+	// counting from the first element in the slice.
+	//The length and capacity of a slice s can be obtained using the expressions
+	// len(s) and cap(s).
+	//You can extend a slice's length by re-slicing it, provided it has sufficient
+	// capacity. Try changing one of the slice operations in the example program
+	//to extend it beyond its capacity and see what happens.
+
+	//For example, make([]int, 0, 10) allocates an underlying array
+	//of size 10 and returns a slice of length 0 and capacity 10 that is
+	//backed by this underlying array
+	xs := make([]int, 0, 10)
+	//length of xs is 0
+	fmt.Println(len(xs))
+	//capacity of xs is 10
+	fmt.Println(cap(xs))
+
+	//it will panic
+	//xs[3] = 10
+	//fmt.Println(xs[0])
+
+	//https://tour.golang.org/moretypes/11
+	//Extending slice length
+	xs = xs[:10]
+	//now the length is 10
+	fmt.Println(len(xs))
+	//prints [0 0 0 0 0 0 0 0 0 0]
+	fmt.Println(xs)
+	//panic: runtime error: slice bounds out of range
+	//xs = xs[:20]
+
+	// Drop its first two values.
+	xs = xs[2:]
+	fmt.Println(xs)
+
+
+	point := Vertex{1, 1}
+	//Operand & generates a pointer to Vertex
+	point2 := &point
+
+	//https://tour.golang.org/moretypes/1
+
+	//main.Vertex
+	fmt.Println(reflect.TypeOf(point))
+	//*main.Vertex
+	fmt.Println(reflect.TypeOf(point2))
+	//main.Vertex
+	//The * operator denotes the pointer's underlying value.
+	fmt.Println(reflect.TypeOf(*point2))
+
+	//This is invalid
+	//fmt.Println(reflect.TypeOf(*
+
+	//Reading the value through pointer
+	fmt.Println((*point2).X)
+	//To access the field X of a struct when we have the struct pointer p we could
+	//write (*p).X. However, that notation is cumbersome,
+	//so the language permits us instead to write just p.X, without the explicit dereference.
+	fmt.Println(point2.X)
+
+	var pp *int
+	ii := 42
+	pp = &ii
+
+	fmt.Println(*pp) // read i through the pointer p
+	*pp = 21         // set i through the pointer p
+
 	abc := "AbcdEfg"
 
 	for i := 0; i < len(abc);  i++{
@@ -306,4 +395,5 @@ func main() {
 			fmt.Println(char, "is upper.")
 		}
 	}
+
 }

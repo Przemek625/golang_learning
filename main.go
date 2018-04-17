@@ -296,4 +296,14 @@ func main() {
 	say_cords(vex)
 	say_cords(mav)
 
+	abc := "AbcdEfg"
+
+	for i := 0; i < len(abc);  i++{
+		char := string(abc[i])
+		if char != strings.ToUpper(char){
+			fmt.Println(char, "is not upper.")
+		} else {
+			fmt.Println(char, "is upper.")
+		}
+	}
 }

@@ -396,4 +396,9 @@ func main() {
 		}
 	}
 
+	abcd := "QQ@#$$@$@#^$%*&^)()123abcde"
+
+	//QQ@#$$@$@#^$%*&^)()123ABCDE
+	fmt.Println(strings.ToUpper(abcd))
+
 }

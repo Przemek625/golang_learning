@@ -401,4 +401,9 @@ func main() {
 	//QQ@#$$@$@#^$%*&^)()123ABCDE
 	fmt.Println(strings.ToUpper(abcd))
 
+	//Go allows not giving any values during creating instances
+	emty_vertex := Vertex{}
+	//{0 0}
+	fmt.Println(emty_vertex)
+
 }

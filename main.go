@@ -406,4 +406,9 @@ func main() {
 	//{0 0}
 	fmt.Println(emty_vertex)
 
+	ssss := "ABCDEF"
+	sb := []byte(ssss)
+	fmt.Println(sb)
+	fmt.Println(string(sb))
+
 }

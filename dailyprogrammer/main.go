@@ -41,7 +41,7 @@ func main() {
 
 		if err == nil{
 
-			for _, row := range cdata {
+			for _, row := range cdata[1:] {
 				s1, _ := strconv.Atoi(row[1])
 				s2, _ := strconv.Atoi(row[3])
 				games = append(games, Game{row[0], s1, row[2], s2})
@@ -63,9 +63,10 @@ func main() {
 				winner = game.playerTwo
 			}
 
-			if IsInWinners(winners, winner){
+			if !IsInWinners(winners, winner){
 				winners = append(winners, winner)
 			}
+
 		}
 	}
 

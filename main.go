@@ -11,6 +11,8 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"strings"
 	"reflect"
+	"os"
+	"encoding/csv"
 )
 
 type Book struct {
@@ -410,5 +412,22 @@ func main() {
 	sb := []byte(ssss)
 	fmt.Println(sb)
 	fmt.Println(string(sb))
+
+	file, err := os.Open("LDbXGeJn.csv")
+	defer file.Close()
+
+	if err == nil{
+
+		reader := csv.NewReader(file)
+		data, err := reader.ReadAll()
+
+		if err == nil{
+			for _, value := range data {
+				fmt.Println(value)
+			}
+		}
+
+	}
+
 
 }

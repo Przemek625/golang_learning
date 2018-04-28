@@ -4,7 +4,6 @@ import (
 	"os"
 	"encoding/csv"
 	"strconv"
-	"fmt"
 )
 
 type Game struct {
@@ -25,7 +24,7 @@ func IsInWinners(winners []string, winner string)  bool {
 
 }
 
-func main() {
+func solution1() int{
 
 	//This variable is going to have 16446 records!!!
 	var games []Game
@@ -69,6 +68,9 @@ func main() {
 
 		}
 	}
+	return len(winners)
+}
 
-	fmt.Println(len(winners))
+func main() {
+
 }
